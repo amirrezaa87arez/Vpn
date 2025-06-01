@@ -1,4 +1,3 @@
-
 import telebot
 from telebot import types
 import json
@@ -52,7 +51,6 @@ plans_text = """💳 لیست پلن‌ها:
 7️⃣ پلن تک کاربره نامحدود سه ماهه - 174 تومن
 8️⃣ پلن دو کاربره نامحدود سه ماهه - 234 تومن
 9️⃣ پلن سه کاربره نامحدود سه ماهه - 335 تومن"""
-
 
 @bot.message_handler(commands=['start'])
 def handle_start(message):
@@ -111,4 +109,8 @@ def handle_receipt(message):
         elif message.content_type == 'document':
             bot.send_document(admin_id, message.document.file_id, caption=caption)
 
+# پاک کردن webhook برای جلوگیری از conflict
+bot.remove_webhook()
+
+# شروع polling
 bot.infinity_polling()
